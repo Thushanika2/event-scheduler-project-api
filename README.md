@@ -1,6 +1,6 @@
-# Event Scheduler API
+# AgendaFlow API
 
-A Flask API for managing conference sessions and personal attendee agendas. Organisers create and manage sessions; attendees browse the public schedule and build a personal agenda with time-clash warnings and capacity checks.
+A Flask API for AgendaFlow — manage conference sessions and personal attendee agendas. Organisers create and manage sessions; attendees browse the public schedule and build a personal agenda with time-clash warnings and capacity checks.
 
 **Base URL:** `http://127.0.0.1:5000`
 
