@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 
 from app.controllers.auth_controller import (
+    admin_registration_available,
     get_profile,
     login_user,
     logout_user,
@@ -9,6 +10,12 @@ from app.controllers.auth_controller import (
 from app.middleware import roles_required
 
 auth_bp = Blueprint("auth", __name__, url_prefix="/api/auth")
+
+
+@auth_bp.route("/admin-registration-status", methods=["GET"])
+def admin_registration_status():
+    body, status = admin_registration_available()
+    return jsonify(body), status
 
 
 @auth_bp.route("/register", methods=["POST"])

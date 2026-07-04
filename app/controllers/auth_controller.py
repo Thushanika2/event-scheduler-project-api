@@ -30,6 +30,10 @@ def _validate_register_payload(data):
 
     if email and User.query.filter_by(email=email).first():
         errors.append("Email is already registered.")
+    if role == "admin" and User.query.filter_by(role="admin").count() >= 1:
+        errors.append(
+            "An administrator account already exists. Admin registration is disabled."
+        )
 
     return errors
 
@@ -95,6 +99,11 @@ def login_user(data):
         "access_token": access_token,
         "user": user.to_dict(),
     }, 200
+
+
+def admin_registration_available():
+    available = User.query.filter_by(role="admin").count() == 0
+    return {"available": available}, 200
 
 
 def logout_user():
