@@ -26,14 +26,14 @@ def login():
 
 
 @auth_bp.route("/logout", methods=["POST"])
-@roles_required("organiser", "attendee")
+@roles_required("organiser", "attendee", "admin")
 def logout(**kwargs):
     body, status = logout_user()
     return jsonify(body), status
 
 
 @auth_bp.route("/profile", methods=["GET"])
-@roles_required("organiser", "attendee")
+@roles_required("organiser", "attendee", "admin")
 def profile(current_user=None, **kwargs):
     body, status = get_profile(current_user)
     return jsonify(body), status

@@ -10,7 +10,10 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     email = db.Column(db.String(255), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
-    role = db.Column(db.Enum("organiser", "attendee", name="user_role"), nullable=False)
+    role = db.Column(
+        db.Enum("organiser", "attendee", "admin", name="user_role"),
+        nullable=False,
+    )
     is_active = db.Column(db.Boolean, default=True, nullable=False)
     created_at = db.Column(db.DateTime, default=utc_now, nullable=False)
 

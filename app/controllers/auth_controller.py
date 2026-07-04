@@ -21,9 +21,9 @@ def _validate_register_payload(data):
         errors.append("Password is required.")
     elif len(password) < 6:
         errors.append("Password must be at least 6 characters.")
-    if role not in ("attendee", "organiser"):
-        errors.append("Role must be 'attendee' or 'organiser'.")
-    if not full_name:
+    if role not in ("attendee", "organiser", "admin"):
+        errors.append("Role must be 'attendee', 'organiser', or 'admin'.")
+    if role != "admin" and not full_name:
         errors.append("Full name is required.")
     if role == "organiser" and not (data.get("organisation") or "").strip():
         errors.append("Organisation is required for organisers.")
@@ -54,7 +54,7 @@ def register_user(data):
                 phone=(data.get("phone") or "").strip() or None,
             )
             db.session.add(organiser)
-        else:
+        elif role == "attendee":
             attendee = Attendee(
                 user_id=user.id,
                 full_name=data["full_name"].strip(),
