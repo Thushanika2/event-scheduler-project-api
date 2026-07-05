@@ -10,7 +10,7 @@ DEFAULT_PASSWORD = "password123"
 USERS = [
     {
         "email": "admin@agendaflow.demo",
-        "role": "admin",
+        "role": "admin123",
     },
     {
         "email": "john.smith@techevents.lk",
